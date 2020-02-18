@@ -41,7 +41,7 @@ func WithPath(p string) VictoriaCacheOption {
 	}
 }
 
-// WithCacheSize set cache size
+// WithTTL set cache size
 func WithTTL(r time.Duration) VictoriaCacheOption {
 	return func(o *VictoriaCache) {
 		o.TTL = r
