@@ -68,7 +68,6 @@ func NewVictoriaCache(opts ...VictoriaCacheOption) *VictoriaCache {
 	} else {
 		s.cache = fastcache.New(s.cacheSize)
 	}
-
 	return s
 }
 

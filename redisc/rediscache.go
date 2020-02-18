@@ -8,6 +8,7 @@ import (
 	"github.com/tsingson/bytecache/pkg/vtils"
 )
 
+// RedisConfig configuration for redis
 type RedisConfig struct {
 	Addr              string
 	Password          string
@@ -36,11 +37,13 @@ func connectRedis(cfg *RedisConfig) (client *redis.Client) {
 	return
 }
 
+// RedisCache redis cache for kv only
 type RedisCache struct {
 	redis             *redis.Client
 	defaultExpiration time.Duration
 }
 
+// NewRedisCache initial redis cache
 func NewRedisCache(cfg *RedisConfig) (*RedisCache, error) {
 	r := &RedisCache{defaultExpiration: cfg.defaultExpiration}
 
@@ -53,6 +56,7 @@ func NewRedisCache(cfg *RedisConfig) (*RedisCache, error) {
 	return r, nil
 }
 
+// Set k/v in
 func (c *RedisCache) Set(k, v []byte) bool {
 	err := c.redis.Set(vtils.B2S(k), vtils.B2S(v), c.defaultExpiration).Err()
 	check := true
@@ -62,6 +66,7 @@ func (c *RedisCache) Set(k, v []byte) bool {
 	return check
 }
 
+// Del delete k/v
 func (c *RedisCache) Del(k []byte) {
 	keys := []string{vtils.B2S(k)}
 
@@ -71,6 +76,7 @@ func (c *RedisCache) Del(k []byte) {
 	}
 }
 
+// Get check and get k/v
 func (c *RedisCache) Get(k []byte) ([]byte, bool) {
 	var b []byte
 	b, err := c.redis.Get(vtils.B2S(k)).Bytes()

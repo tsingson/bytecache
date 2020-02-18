@@ -1,6 +1,6 @@
 package bytecache
 
-// ByteCache  cache key and value as []byte
+// ByteCache cache k/v (byte array only)
 type ByteCache interface {
 	Set(k, v []byte) bool
 	Del(k []byte)
