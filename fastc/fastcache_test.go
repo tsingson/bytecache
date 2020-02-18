@@ -81,6 +81,5 @@ func BenchmarkVictoriaCache_Get(b *testing.B) {
 		})
 		time.Sleep(time.Duration(5) * time.Second)
 		log.Sync()
-		log.Sync()
 	}
 }

@@ -34,6 +34,7 @@ func WithCacheSize(r int) VictoriaCacheOption {
 	}
 }
 
+// WithPath set cache file path
 func WithPath(p string) VictoriaCacheOption {
 	return func(o *VictoriaCache) {
 		o.path = defaultLogPath("fastcache") + "/" + p

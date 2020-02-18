@@ -42,9 +42,9 @@ func WithBufferItems(m int64) GraphCacheOption {
 
 // GraphCache DGraphCache cache
 type GraphCache struct {
-	cache     *ristretto.Cache
-	timeOut   time.Duration
-	valueCost int64
+	cache   *ristretto.Cache
+	timeOut time.Duration
+	// valueCost int64
 }
 
 // NewGraphCache new

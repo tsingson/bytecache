@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-
 	runtime.GOMAXPROCS(runtime.NumCPU() * 4)
 
 	log := logger.New(logger.WithStoreInDay(),

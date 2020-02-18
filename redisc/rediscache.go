@@ -55,11 +55,11 @@ func NewRedisCache(cfg *RedisConfig) (*RedisCache, error) {
 
 func (c *RedisCache) Set(k, v []byte) bool {
 	err := c.redis.Set(vtils.B2S(k), vtils.B2S(v), c.defaultExpiration).Err()
+	check := true
 	if err != nil {
-		return false
+		check = false
 	}
-
-	return true
+	return check
 }
 
 func (c *RedisCache) Del(k []byte) {
@@ -69,7 +69,6 @@ func (c *RedisCache) Del(k []byte) {
 	if err == nil {
 		return
 	}
-	return
 }
 
 func (c *RedisCache) Get(k []byte) ([]byte, bool) {
